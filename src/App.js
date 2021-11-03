@@ -1,9 +1,9 @@
-import ProfilePage from "./Pages/Profile/ProfilePage";
-import {mockUsers} from "./mockData"
+import {mockTask} from "./mockData"
+import TodoPage from "./Pages/Todo/TodoPage";
 
 function App() {
   return (
-    <ProfilePage users={mockUsers}/>
+    <TodoPage tasks={mockTask}/>
   );
 }
 

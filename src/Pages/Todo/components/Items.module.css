@@ -1,0 +1,14 @@
+.capsule{
+    background: #fff;
+    border: solid 2px black;
+    border-radius: 50px;
+    width: fit-content;
+    min-width: 100px;
+    margin: 20px;
+    display: block;
+}
+
+.text{
+    padding: 0 20px;
+    text-align: center;
+}
