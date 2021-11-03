@@ -9,3 +9,13 @@
     display: block;
     text-align: center;
 }
+
+.textDone{
+    margin: 0;
+    text-decoration: line-through;
+}
+
+.textUndone{
+    margin: 0;
+    text-decoration: none;
+}
