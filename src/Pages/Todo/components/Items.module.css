@@ -5,10 +5,7 @@
     width: fit-content;
     min-width: 100px;
     margin: 20px;
+    padding: 10px 20px;
     display: block;
-}
-
-.text{
-    padding: 0 20px;
     text-align: center;
 }
