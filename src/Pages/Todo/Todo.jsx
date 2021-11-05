@@ -1,56 +1,67 @@
 import React, { Component } from 'react'
 
-export class Todo extends Component {
+export default class Todo extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
-            newItem : "",
-            list : []
+            placeholder: 'Add task here...',
+            inputText: '',
+            printText: ['jack'],
+            isChecked: false
         }
     }
 
-    updateInput(key,value){
+    submitHandle(e){
+        e.preventDefault()
+    }
+
+    changeText(e){
         this.setState({
-            [key]: value
+            inputText: e.target.value
         })
     }
 
-    AddtoList(){
-        const newItem = {
-            id: 1 + Math.random(),
-            value: this.state.newItem.slice()
+    printText(){
+        this.setState({
+            printText: [...this.state.printText,this.state.inputText]
+        })
+        
+        this.setState({
+            inputText: ''
+        })
+    }
+    
+    checkboxHandle(e){
+        if (e.target.checked === true){
+            this.setState({
+                isChecked: 'true'
+            })
+        } else{
+            this.setState({
+                isChecked: 'false'
+            })
         }
-        const list = [...this.state.list]
-        list.push(newItem)
-        this.setState({list, newItem:""})
     }
 
-    DeleteItem(id){
-        const list = [...this.state.list];
-        const updatedList = list.filter(item => item.id !== id);
-        this.setState({ list: updatedList });
-    }
-
-    //Render
     render() {
         return (
             <div>
-                <input type="text" placeholder="Add to do.." value={this.state.newItem} onChange={e=>this.updateInput("newItem",e.target.value)}/>
-                <button onClick={()=>this.AddtoList()}>Submit</button>
+                <form onSubmit={this.submitHandle}>
+                    <input type="text" value={this.state.inputText} onChange={(e)=>this.changeText(e)} />
+                    <button type='submit' onClick={()=>this.printText()}>Submit</button>
+                </form>
                 <ul>
-                    {this.state.list.map((e) => { return (
-                        <li key={e.id}>
-                            <input type="checkbox"/>
-                            {e.value}
-                            <button onClick={this.DeleteItem(e.id)}>Delete</button>
-                        </li>
-                    )}
+                    {console.log(this.state.inputText)}
+                    {this.state.printText.map((val,i)=>
+                    <li key={i}>
+                        <input type="checkbox" onClick={(e)=>this.checkboxHandle(e)}/>
+                        {this.state.isChecked}
+                        {val}
+                    </li>
                     )}
                 </ul>
             </div>
         )
     }
 }
-
-export default Todo
