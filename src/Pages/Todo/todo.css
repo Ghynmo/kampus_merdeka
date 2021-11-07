@@ -1,0 +1,34 @@
+
+.form-container{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form{
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 5px 3px 13px -3px rgba(0,0,0,0.37);
+    -webkit-box-shadow: 5px 3px 13px -3px rgba(0,0,0,0.37);
+    -moz-box-shadow: 5px 3px 13px -3px rgba(0,0,0,0.37);
+}
+
+input{
+    border: none;
+    height: 20px;
+    outline: none;
+}
+
+.btn-submit{
+    background: none;
+    border: none;
+    height: fit-content;
+    color: #727272;
+}
+
+ul{
+    list-style: none;
+    width: 400px;
+    display: inline-block;
+}

@@ -1,15 +1,14 @@
-// import Home from "./Pages/Home/Home";
 import Todo from "./Pages/Todo/Todo";
 import Header from "./Pages/Todo/Header";
+import './App.css'
 
 
 function App() {
   return (
-    <>
-      {/* <Home/> */}
+    <div className='container'>
       <Header/>
       <Todo/>
-    </>
+    </div>
   );
 }
 
