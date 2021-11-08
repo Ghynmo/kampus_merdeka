@@ -38,12 +38,10 @@ function TodoItem (props) {
     <div>
         <li>
             <div style={title}>
-                {console.log('render',title,checkDone,completed)}
-
                 <input type="checkbox" checked={checkDone} onChange={(e)=>taskDone(e)}/>
                 {props.data.title}
             </div>
-            <button onClick={()=>{props.delete(props.data.id)}}>Delete</button>
+            <button className="btn-delete" onClick={()=>{props.delete(props.data.id)}}>Delete</button>
         </li>
         <hr></hr>
     </div>

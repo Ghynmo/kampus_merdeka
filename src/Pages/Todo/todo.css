@@ -1,5 +1,6 @@
 
 .form-container{
+    margin: auto;
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -21,10 +22,11 @@ input{
 }
 
 .btn-submit{
+    color: #9b9b9b;
     background: none;
     border: none;
     height: fit-content;
-    color: #727272;
+    cursor: pointer;
 }
 
 ul{

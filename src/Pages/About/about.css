@@ -1,0 +1,18 @@
+.about-container{
+    display: flex;
+}
+
+.nav-links{
+    margin-top: 20px;
+    width: 200px;
+}
+
+.navlink-about{
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.about-text{
+    margin-right: 20px;
+}

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import TodoItem from './TodoItem'
+import Navside from './components/NavSide'
+import Header from './components/Header'
+import TodoItem from './components/TodoItem'
 import './todo.css'
 
 const mainData = [
@@ -46,16 +48,20 @@ function Todo (){
     }
     
     return (
-        <div className='form-container'>
-            <form>
-                <input type="text" value={inputText} onChange={(e)=>inputData(e)} />
-                <button className='btn-submit' type='submit' onClick={(e)=>createNewData(e)}>Submit</button>
-            </form>
-            <ul>
-                {AllTaskData.map((val)=>
-                <TodoItem key={val.id} data={val} delete={deleteData} />
-                )}
-            </ul>
+        <div>
+            <Navside/>
+            <div className='form-container'>
+                <Header/>
+                <form>
+                    <input placeholder="Add task here..." type="text" value={inputText} onChange={(e)=>inputData(e)} />
+                    <button className='btn-submit' type='submit' onClick={(e)=>createNewData(e)}>Submit</button>
+                </form>
+                <ul>
+                    {AllTaskData.map((val)=>
+                    <TodoItem key={val.id} data={val} delete={deleteData} />
+                    )}
+                </ul>
+            </div>
         </div>
     )
 }
