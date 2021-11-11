@@ -1,8 +1,12 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+
+import { toogleTodo, delTodo, setUpdate } from "../store/todoSlice"
 import styles from "./TodoItem.module.css"
 
 function TodoItem(props) {
   const [editing, setEditing] = useState(false)
+  const dispatch = useDispatch()
 
   const handleEditing = () => {
     setEditing(true)
@@ -35,8 +39,8 @@ function TodoItem(props) {
   return (
     <li className={styles.item}>
       <div onDoubleClick={handleEditing} style={viewMode}>
-        <input type="checkbox" className={styles.checkbox} checked={completed} onChange={() => props.handleChangeProps(id)} />
-        <button onClick={() => props.deleteTodoProps(id)}>Delete</button>
+        <input type="checkbox" className={styles.checkbox} checked={completed} onChange={() => dispatch(toogleTodo(id))} />
+        <button onClick={() => dispatch(delTodo(id))}>Delete</button>
         <span style={completed ? completedStyle : null}>{title}</span>
       </div>
       <input
@@ -45,7 +49,7 @@ function TodoItem(props) {
         className={styles.textInput}
         value={title}
         onChange={(e) => {
-          props.setUpdate(e.target.value, id)
+          dispatch(setUpdate(e.target.value, id))
         }}
         onKeyDown={handleUpdatedDone}
       />

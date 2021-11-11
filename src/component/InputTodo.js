@@ -1,8 +1,12 @@
 import { useState } from "react"
-import styles from "./InputTodo.module.css"
+import { useDispatch } from "react-redux"
 
-function InputTodo({ addTodoProps }) {
+import styles from "./InputTodo.module.css"
+import { addTodoItem } from "../store/todoSlice"
+
+function InputTodo() {
   const [title, setTitle] = useState("")
+  const dispatch = useDispatch()
 
   const onChange = (e) => {
     setTitle(e.target.value)
@@ -11,7 +15,7 @@ function InputTodo({ addTodoProps }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (title.trim()) {
-      addTodoProps(title)
+      dispatch(addTodoItem(title))
       setTitle("")
     } else {
       alert("Please write item")
