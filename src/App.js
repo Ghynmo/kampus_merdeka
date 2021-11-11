@@ -1,13 +1,14 @@
-import NameForm from "./Form/FormCoding";
-import Search from "./Form/Search";
+import "./App.css"
+import { BrowserRouter as Router } from "react-router-dom"
+
+import TodoContainer from "./component/TodoContainer"
 
 function App() {
   return (
-    <>
-      <NameForm />
-      <Search />
-    </>
-  );
+    <Router basename={process.env.PUBLIC_URL}>
+      <TodoContainer />
+    </Router>
+  )
 }
 
-export default App;
+export default App
