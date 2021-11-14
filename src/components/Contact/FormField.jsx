@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUpdate } from '../../store/formSlice';
 
 
-const baseData = {
-    fullname: '',
-    email: '',
-    phone: '',
-    nationality: '',
-    message: ''
-}
+// const baseData = {
+//     fullname: '',
+//     email: '',
+//     phone: '',
+//     nationality: '',
+//     message: ''
+// }
 
 const baseError = {
     fullname: '',
@@ -17,9 +19,11 @@ const baseError = {
 }
 
 export default function FormField() {
-    const [Data, setData] = useState(baseData)
+    // const [Data, setData] = useState(baseData)
     const [Err, setErr] = useState(baseError)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const formdata = useSelector(state => state.formdata)
 
     const regexNama = /^[A-Za-z ]*$/
     const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -48,7 +52,9 @@ export default function FormField() {
                 setErr({...Err, [name]: ''})
             }
         }
-        setData({...Data, [name]: value});
+        // setData({...Data, [name]: value});
+        const newData = {[name]: value}
+        dispatch(setUpdate(newData))
     }
     
     const HandleSubmit = (e) => {
@@ -58,13 +64,13 @@ export default function FormField() {
           } else {
             console.log("Success")
 
-            localStorage.setItem("fullname", Data.fullname)
-            localStorage.setItem("email", Data.email)
-            localStorage.setItem("phone", Data.phone)
-            localStorage.setItem("nationality", Data.nationality)
-            localStorage.setItem("message", Data.message)
+            // localStorage.setItem("fullname", Data.fullname)
+            // localStorage.setItem("email", Data.email)
+            // localStorage.setItem("phone", Data.phone)
+            // localStorage.setItem("nationality", Data.nationality)
+            // localStorage.setItem("message", Data.message)
 
-            alert(`Data Pendaftar "${Data.fullname}" Berhasil Diterima`)
+            alert(`Data Pendaftar "${formdata.fullname}" Berhasil Diterima`)
             navigate('/contact-review')
           }
           e.preventDefault();
@@ -76,17 +82,17 @@ export default function FormField() {
                 <h1>Contact Us</h1>
                 <div className="my-2">
                     <label htmlFor="fullname_input">Full Name<span>*</span></label>
-                    <input id="fullname_input" className="form-control" type="text" name="fullname" placeholder="Your Full Name Here..." value={Data.fullname} onChange={HandleChange} required/>
+                    <input id="fullname_input" className="form-control" type="text" name="fullname" placeholder="Your Full Name Here..." value={formdata.fullname} onChange={HandleChange} required/>
                     <div className="invalid-feedback">Full name cannot be empty</div>
                 </div>
                 <div className="my-2">
                     <label htmlFor="email_input">Email Address<span>*</span></label>
-                    <input id="email_input" className="form-control" type="email" name="email" placeholder="example@domain.com" value={Data.email} onChange={HandleChange} required/>
+                    <input id="email_input" className="form-control" type="email" name="email" placeholder="example@domain.com" value={formdata.email} onChange={HandleChange} required/>
                     <div className="invalid-feedback">Email address cannot be empty</div>
                 </div>
                 <div className="my-2">
                     <label htmlFor="phone_input">Phone Number<span>*</span></label>
-                    <input id="phone_input" className="form-control" type="tel" name="phone" value={Data.phone} onChange={HandleChange} required/>
+                    <input id="phone_input" className="form-control" type="tel" name="phone" value={formdata.phone} onChange={HandleChange} required/>
                     <div className="invalid-feedback">Phone number cannot be empty</div>
                 </div>
                 <div className="my-2">
@@ -100,7 +106,7 @@ export default function FormField() {
                     <label htmlFor="message">Message</label>
                 </div>
                 <div className="my-2">
-                    <textarea name="message" id="message" className="form-control" rows="5" placeholder="Your Message" value={Data.message} onChange={HandleChange}></textarea>
+                    <textarea name="message" id="message" className="form-control" rows="5" placeholder="Your Message" value={formdata.message} onChange={HandleChange}></textarea>
                     <button className="my-2" type="submit">Submit</button>
                 </div>
             </form>
