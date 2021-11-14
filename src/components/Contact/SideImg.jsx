@@ -3,8 +3,8 @@ import Company from '../images/logo-ALTA-v2.png'
 
 export default function SideImg() {
     return (
-        <div class="img-banner">
-            <div class="layer">
+        <div className="img-banner">
+            <div className="layer">
                 <img src={Company} alt=""/>
             </div>
         </div>

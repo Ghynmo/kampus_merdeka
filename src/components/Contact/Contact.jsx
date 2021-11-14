@@ -4,7 +4,7 @@ import FormField from './FormField'
 
 export default function Contact() {
     return (
-        <div class="contact-wrap">
+        <div className="contact-wrap">
             <SideImg/>
             <FormField/>
         </div>
