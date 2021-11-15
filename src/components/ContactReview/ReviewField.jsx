@@ -1,27 +1,32 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 export default function ReviewField() {
+    const formdata = useSelector(state => state.formdata)
+
     return (
         <div className="centered-box">
             <div className="information">
                 <div>
                     <table>
-                        <tr>
-                            <th className="table_head">Full Name</th>
-                            <td>: <p id="fullname_value"></p></td>
-                        </tr>
-                        <tr>
-                            <th className="table_head">Email Address</th>
-                            <td>: <p id="email_value"></p></td>
-                        </tr>
-                        <tr>
-                            <th className="table_head">Phone Number</th>
-                            <td>: <p id="phone_value"></p></td>
-                        </tr>
-                        <tr>
-                            <th className="table_head">Nationality</th>
-                            <td>: <p id="nationality_value"></p></td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th className="table_head">Full Name</th>
+                                <td>: <p id="fullname_value">{console.log(formdata.fullname)}</p></td>
+                            </tr>
+                            <tr>
+                                <th className="table_head">Email Address</th>
+                                <td>: <p id="email_value"></p></td>
+                            </tr>
+                            <tr>
+                                <th className="table_head">Phone Number</th>
+                                <td>: <p id="phone_value"></p></td>
+                            </tr>
+                            <tr>
+                                <th className="table_head">Nationality</th>
+                                <td>: <p id="nationality_value"></p></td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div className="hi_text">

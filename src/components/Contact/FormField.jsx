@@ -19,11 +19,11 @@ const baseError = {
 }
 
 export default function FormField() {
-    // const [Data, setData] = useState(baseData)
+    const [Data, setData] = useState(null)
     const [Err, setErr] = useState(baseError)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const formdata = useSelector(state => state.formdata)
+    const formdata = useSelector(state => state)
 
     const regexNama = /^[A-Za-z ]*$/
     const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -52,9 +52,8 @@ export default function FormField() {
                 setErr({...Err, [name]: ''})
             }
         }
-        // setData({...Data, [name]: value});
-        const newData = {[name]: value}
-        dispatch(setUpdate(newData))
+        setData({...Data, [name]: value});
+        // dispatch(setUpdate(Data))
     }
     
     const HandleSubmit = (e) => {
@@ -63,6 +62,7 @@ export default function FormField() {
             alert(`Data Pendaftar Tidak Sesuai`)
           } else {
             console.log("Success")
+            dispatch(setUpdate(Data))
 
             // localStorage.setItem("fullname", Data.fullname)
             // localStorage.setItem("email", Data.email)
@@ -77,7 +77,9 @@ export default function FormField() {
     }
 
     return (
+        
         <div className="forms">
+            {console.log(formdata)}
             <form className="needs-validation" id="form-field" onSubmit={HandleSubmit} noValidate>
                 <h1>Contact Us</h1>
                 <div className="my-2">

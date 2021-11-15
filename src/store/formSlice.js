@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialValue = {
+const newState = {   
     fullname: '',
     email: '',
     phone: '',
@@ -10,10 +10,15 @@ const initialValue = {
 
 export const formSlice = createSlice({
     name: "formdata",
-    initialState: initialValue,
+    initialState: {
+        formdata : newState
+    },
     reducers: {
         setUpdate: (state, action) => {
-            state = [...state, action.payload]
+            const newData = action.payload
+            console.log('in the payload', newData)
+            state.formdata = newData
+            console.log('in the state',state.formdata)
         }
     }
 })
