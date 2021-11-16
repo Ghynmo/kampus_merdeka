@@ -1,10 +1,45 @@
 import { useState } from 'react';
 import './App.css';
 import Todo from 'components/Todo';
+import {gql, useLazyQuery, useQuery} from '@apollo/client';
+
+const GetTodoList = gql`
+  query MyQuery {
+    todolist {
+      id
+      is_done
+      title
+    }
+  }
+`
+
+// const getTodobyid = gql`
+// query MyQuery($_eq: Int!) {
+//   todolist(where: {id: {_eq: $_eq}}) {
+//     id
+//     is_done
+//     title
+//   }
+// }
+// `
 
 function TodoList() {
+  const {data, loading, error} = useQuery(GetTodoList)
+  // const [getTodo, {data, loading, error}] = useLazyQuery(getTodobyid)
+  // const [todoid, setTodoid] = useState(0)
+
   const [list, setList] = useState([]);
   const [title, setTitle] = useState('');
+
+
+  if (loading) {
+    return <h1>Loading</h1>
+  }
+
+  if (error) {
+    console.log(error)
+    return null
+  }
 
   const onChangeTitle = (e) => {
     if (e.target) {
@@ -25,23 +60,40 @@ function TodoList() {
   };
 
   const onDeleteItem = (idx) => {
-    const newList = list.filter((_, i) => i != idx);
+    const newList = list.filter((_, i) => i !== idx);
     setList(newList);
   };
+
+  // const onGetData = () => {
+  //   getTodo({
+  //     variables: {
+  //       _eq: todoid
+  //     }
+  //   })
+  //   setList(data?.todolist)
+  // }
+
+  // const onChangeTodoid = (e) => {
+  //   if(e.target){
+  //     setTodoid(e.target.value)
+  //   }
+  // }
 
   return (
     <>
       <div className='container'>
+        {/* <input value={todoid} onChange={onChangeTodoid}></input>
+        <button onClick={onGetData}>Get data</button> */}
         <h1 className='app-title'>todos</h1>
         <ul className='todo-list js-todo-list'>
-          {list.map((v, i) => (
+          {data?.todolist.map((v, i) => (
             <Todo
               key={i}
               id={i}
               onClickItem={() => onClickItem(i)}
               onDeleteItem={() => onDeleteItem(i)}
               title={v.title}
-              checked={v.checked}
+              checked={v.is_done}
             />
           ))}
         </ul>
