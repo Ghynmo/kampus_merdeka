@@ -1,6 +1,7 @@
 import Home from './components/Home/Home'
 import Contact from './components/Contact/Contact'
 import ContactReview from './components/ContactReview/ContactReview'
+import News from './components/News/News'
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./store/store";
 import './components/style.css'
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path="/contact" element={<Contact/>} />
             <Route path="/contact-review" element={<ContactReview/>} />
+            <Route path="/news" element={<News/>} />
           </Routes>
         </PersistGate>
       </BrowserRouter>

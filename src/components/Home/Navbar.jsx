@@ -19,7 +19,7 @@ export default function Navbar() {
                             <Link to="" className="nav-link link-secondary">ABOUT</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="" className="nav-link link-secondary">EXPERIENCE</Link>
+                            <Link to="/news" className="nav-link link-secondary">NEWS</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/contact" className="nav-link link-secondary">CONTACT</Link>
