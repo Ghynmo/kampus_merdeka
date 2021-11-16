@@ -4,21 +4,22 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import formSlice from "./formSlice";
 
-// const reducer = combineReducers({
-//     formdata : formSlice
-// })
-
-// const persistConfig = {
-//     key: "root",
-//     storage
-// }
-// const pReducer = persistReducer(persistConfig, reducer)
-
-export default configureStore({
-    reducer: {
-        formdata : formSlice
-    }
+const rootReducer = combineReducers({
+    formdata : formSlice
 })
-// const persistor = persistStore(store)
+const persistConfig = {
+    key: "root",
+    storage,
+    whitelist: ['formdata']
+}
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-// export {store, persistor}
+// export default configureStore({
+//     reducer: {
+//         formdata : formSlice
+//     }
+// })
+const store = configureStore({reducer: persistedReducer})
+const persistor = persistStore(store)
+
+export {store, persistor}

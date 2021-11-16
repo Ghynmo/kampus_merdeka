@@ -13,13 +13,13 @@ export default function Navbar() {
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a href="" className="nav-link link-primary">HOME</a>
+                            <Link to="" className="nav-link link-primary">HOME</Link>
                         </li>
                         <li className="nav-item">
-                            <a href="" className="nav-link link-secondary">ABOUT</a>
+                            <Link to="" className="nav-link link-secondary">ABOUT</Link>
                         </li>
                         <li className="nav-item">
-                            <a href="" className="nav-link link-secondary">EXPERIENCE</a>
+                            <Link to="" className="nav-link link-secondary">EXPERIENCE</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/contact" className="nav-link link-secondary">CONTACT</Link>

@@ -17,7 +17,9 @@ export const formSlice = createSlice({
         setUpdate: (state, action) => {
             const newData = action.payload
             console.log('in the payload', newData)
-            state.formdata = newData
+            if (newData !== null) {
+                state.formdata = newData
+            }
             console.log('in the state',state.formdata)
         }
     }

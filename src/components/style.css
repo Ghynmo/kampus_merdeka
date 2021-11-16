@@ -60,6 +60,12 @@
     padding-bottom: 35px;
 }
 
+#timer{
+    position: absolute;
+    margin-top: 0;
+    right: 20px;
+}
+
 button{
     font-size: 16px;
     font-weight: 400;
@@ -165,6 +171,7 @@ form h1{
     position: absolute;
     display: flex;
     justify-content: center;
+    width: 90%;
     min-height: 90vh;
     z-index: 1031;
 }

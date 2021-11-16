@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 export default function ReviewField() {
-    const formdata = useSelector(state => state.formdata)
+    const formdata = useSelector(state => state.formdata.formdata)
 
     return (
         <div className="centered-box">
@@ -12,25 +12,25 @@ export default function ReviewField() {
                         <tbody>
                             <tr>
                                 <th className="table_head">Full Name</th>
-                                <td>: <p id="fullname_value">{console.log(formdata.fullname)}</p></td>
+                                <td>: <p id="fullname_value">{formdata.fullname}</p></td>
                             </tr>
                             <tr>
                                 <th className="table_head">Email Address</th>
-                                <td>: <p id="email_value"></p></td>
+                                <td>: <p id="email_value">{formdata.email}</p></td>
                             </tr>
                             <tr>
                                 <th className="table_head">Phone Number</th>
-                                <td>: <p id="phone_value"></p></td>
+                                <td>: <p id="phone_value">{formdata.phone}</p></td>
                             </tr>
                             <tr>
                                 <th className="table_head">Nationality</th>
-                                <td>: <p id="nationality_value"></p></td>
+                                <td>: <p id="nationality_value">{formdata.nationality}</p></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div className="hi_text">
-                    <i> Hi <span id="hi_name"></span>, I’m Mike from Monsters, Inc. I’ve seen your previous project and it was really amazing. And as you know our company are planning to build new mobile application. I hope you can join us to develope this application. We look forward to hearing from you and hope you’ll join our project! </i>
+                    <p>{formdata.message}</p>
                 </div>
                 <div className="thanks_text">
                     <hr/>
