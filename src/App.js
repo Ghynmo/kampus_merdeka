@@ -1,63 +1,20 @@
 import { useState } from 'react';
 import './App.css';
 import Todo from 'components/Todo';
-import {gql, useLazyQuery, useMutation, useQuery} from '@apollo/client';
-
-const GetTodoList = gql`
-  query MyQuery {
-    todolist {
-      id
-      is_done
-      title
-    }
-  }
-`
-
-// const GetTodobyid = gql`
-// query MyQuery($_eq: Int!) {
-//   todolist(where: {id: {_eq: $_eq}}) {
-//     id
-//     is_done
-//     title
-//   }
-// }
-// `
-
-const CreateTodo = gql`
-  mutation MyMutation($title: String = "") {
-    insert_todolist_one(object: {title: $title}) {
-      id
-    }
-  }
-`
-
-const UpdateTodo = gql`
-  mutation MyMutation($id: Int!, $is_done: Boolean) {
-    update_todolist_by_pk(pk_columns: {id: $id}, _set: {is_done: $is_done}) {
-      id
-    }
-  }
-`
-
-const DeleteTodo = gql`
-mutation MyMutation($id: Int!) {
-  delete_todolist_by_pk(id: $id) {
-    id
-  }
-}
-`
+import useUpdateTodo from 'hooks/useUpdateTodo';
+import useDeleteTodo from 'hooks/useDeleteTodo';
+import useCreateTodo from 'hooks/useCreateTodo';
+import useSubscriptionTodo from 'hooks/useSubscriptionTodo';
 
 function TodoList() {
-  const {data, loading, error} = useQuery(GetTodoList)
+  // const {data, loading, error} = useQuery(GetTodoList)
   // const [getTodo, {data, loading, error}] = useLazyQuery(GetTodobyid)
   // const [todoid, setTodoid] = useState(0)
-  
-  const [createTodo, {loading: loadingCreate}] = useMutation(CreateTodo, 
-    {refetchQueries: [GetTodoList]})
-  const [updateTodo, {loading: loadingUpdate}] = useMutation(UpdateTodo, 
-    {refetchQueries: [GetTodoList]})
-  const [deleteTodo, {loading: loadingDelete}] = useMutation(DeleteTodo, 
-    {refetchQueries: [GetTodoList]})
+
+  const {createTodo, loadingCreate} = useCreateTodo()
+  const {updateTodo, loadingUpdate} = useUpdateTodo()
+  const {deleteTodo, loadingDelete} = useDeleteTodo()
+  const {data, loading, error} = useSubscriptionTodo()
 
   const [list, setList] = useState([]);
   const [title, setTitle] = useState('');
