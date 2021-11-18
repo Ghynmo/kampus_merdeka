@@ -9,3 +9,11 @@ tr,td {
 .inputan {
     margin-top: 25px;
 }
+
+.justhome{
+    display: 1;
+}
+
+.justforEdit{
+    display: none;
+}
