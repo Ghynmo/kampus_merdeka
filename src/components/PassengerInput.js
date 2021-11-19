@@ -1,15 +1,6 @@
 import { useState } from "react"
 import "./Home.css"
-import {GetPassenger} from "./ListPassenger"
-import {gql, useMutation} from '@apollo/client'
-
-const InsertPassenger = gql`
-  mutation MyMutation($object: passenger_insert_input = {}) {
-    insert_passenger_one(object: $object) {
-      id
-    }
-  }
-`
+import useInsertPassenger from '../hooks/useInsertPassenger'
 
 function PassengerInput(props) {
   const [state, setState] = useState({
@@ -19,7 +10,7 @@ function PassengerInput(props) {
     editing: true,
   })
   
-  const [insertPassenger, {loading: loadingInsert}] = useMutation(InsertPassenger, {refetchQueries: [GetPassenger]})
+  const {insertPassenger, loadingInsert} = useInsertPassenger()
 
   if (loadingInsert){
     return <h3>Loading...</h3>

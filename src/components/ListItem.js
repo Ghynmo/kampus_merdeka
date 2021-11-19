@@ -35,11 +35,10 @@ const ListItem = (props) => {
                 <td><input placeholder="Update Umur" name="updateUmur" onChange={onChange}/></td>
                 <td>
                     <select name="updateGender" onChange={onChange}>
-                        <option defaultValue disabled>Gender</option>
+                        <option defaultValue></option>
                         <option value="Pria">Pria</option>
                         <option value="Wanita">Wanita</option>
                     </select>
-                    {/* <input placeholder="Update Gender" name="updateGender" onChange={onChange}/> */}
                 </td>
                 <td className="removeBorder"><button onClick={() => props.simpanUpdate(state)}>Save</button></td>
                 <td className="removeBorder"><button onClick={() => props.backToHome()}>Cancel</button></td>

@@ -1,57 +1,19 @@
 import ListItem from './ListItem';
-import {gql, useQuery, useLazyQuery, useMutation} from '@apollo/client';
 import { useState, useEffect } from 'react';
-
-
-export const GetPassenger = gql`
-    query MyQuery {
-        passenger {
-        id
-        jenis_kelamin
-        nama
-        umur
-        }
-    }  
-`
-
-const GetPassengerbyId = gql`
-    query MyQuery($id: Int) {
-        passenger(where: {id: {_eq: $id}}) {
-        id
-        jenis_kelamin
-        nama
-        umur
-        }
-    }
-`
-
-const UpdatePassenger = gql`
-    mutation MyMutation($id: Int!, $_set: passenger_set_input = {}) {
-        update_passenger_by_pk(pk_columns: {id: $id}, _set: $_set) {
-        id
-        jenis_kelamin
-        nama
-        umur
-        }
-    }  
-`
-
-const DeletePassenger = gql`
-    mutation MyMutation($id: Int!) {
-        delete_passenger_by_pk(id: $id) {
-        id
-        }
-    }
-`
+import useGetPassenger from '../hooks/useGetPassenger'
+import useGetPassengerbyId from '../hooks/useGetPassengerbyId'
+import useUpdatePassenger from '../hooks/useUpdatePassenger'
+import useDeletePassenger from '../hooks/useDeletePassenger'
+import useSubscription from '../hooks/useSubscriptionPassenger'
 
 const ListPassenger = props => {
-    const {data, loading, error} = useQuery(GetPassenger)
-    const [getDataById, {data: oneData, loading: loadingLazy, error: errorLazy}] = useLazyQuery(GetPassengerbyId)
-    const [updatePassenger, {loading: loadingUpdate}] = useMutation(UpdatePassenger, 
-        {refetchQueries: [GetPassenger]})
-    const [deletePassenger, {loading: loadingDelete}] = useMutation(DeletePassenger, 
-        {refetchQueries: [GetPassenger]})
-
+    // const {data, loading, error} = useGetPassenger()
+    const {getDataById, oneData, loadingLazy, errorLazy} = useGetPassengerbyId()
+    
+    const {updatePassenger, loadingUpdate} = useUpdatePassenger()
+    const {deletePassenger, loadingDelete} = useDeletePassenger()
+    const {data, loading, error} = useSubscription()
+    
     const [PassengerId, setPassengerId] = useState(0)
     const [list, setlist] = useState([])
     const [showEdit, setshowEdit] = useState({
