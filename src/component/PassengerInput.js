@@ -20,7 +20,7 @@ function PassengerInput(props) {
   })
   
   const [insertPassenger, {loading: loadingInsert}] = useMutation(InsertPassenger, {refetchQueries: [GetPassenger]})
-  
+
   if (loadingInsert){
     return <h3>Loading...</h3>
   }

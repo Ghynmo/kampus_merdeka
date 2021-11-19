@@ -60,31 +60,20 @@ const ListPassenger = props => {
         noneditPage: ''  
     })
 
-    // useEffect(() => {
-    //     if (data !== oneData){
-    //         setlist(oneData?.passenger)
-    //     }
-    //     console.log('oneData useEffect', list)
-    // }, [oneData])
-    
     useEffect(() => {
-        if (oneData?.passenger === []){
-            setlist(data?.passenger)
-        } 
-        else{
-            setlist(oneData?.passenger)
-            console.log('list===onedata', oneData)
-        }
-    }, [oneData])
+        console.log('trig data')
+        if (showEdit.active === true){
 
-    useEffect(() => {
-        if (data === oneData){
-            setlist(data?.passenger)
-            console.log('Initialdata')
         } else {
-            console.log('data affected, and not same with oneData')
+            console.log('Initial')
+            setlist(data?.passenger)
         }
     }, [data])
+
+    useEffect(() => {
+        setlist(oneData?.passenger)
+        console.log('show onedata and not same with list')
+    }, [oneData])
     
     useEffect(() => {
         if (showEdit.active === true){
@@ -144,11 +133,8 @@ const ListPassenger = props => {
             ...showEdit,
             active: true
         })
-        if (data !== oneData){
-            setlist(oneData?.passenger)
-            console.log('changging data to one')
-        }
-        console.log('oneData')
+        setlist(oneData?.passenger)
+        console.log('oneUpdatePage')
     }
 
     const saveUpdate = (data) => {
@@ -162,6 +148,7 @@ const ListPassenger = props => {
                 }
             }
         })
+        console.log('update oneData')
     }
 
     const onDeletePassenger = (ID) => {
@@ -170,7 +157,6 @@ const ListPassenger = props => {
                 id: ID
             }
         })
-        setlist(data?.passenger)
         console.log('onDelete')
     }
 
