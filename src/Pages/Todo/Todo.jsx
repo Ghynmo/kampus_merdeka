@@ -3,16 +3,6 @@ import TodoItem from './TodoItem'
 import './todo.css'
 
 const mainData = [
-    {
-        id : 1,
-        title : 'Mengerjakan Exercise',
-        completed : false
-    },
-    {
-        id : 2,
-        title : 'Mengerjakan Assignment',
-        completed : true
-    },
 ]
 
 function Todo (){
